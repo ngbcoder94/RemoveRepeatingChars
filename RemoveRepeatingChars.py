@@ -24,6 +24,7 @@ class Solution(object):
 
 		#Create a while loop to step through the array
 		while(boolVar):
+			#print("dang")
 			#First I will perfrom a bounds check on a pointer
 			if(i == (lenOfArr - 1)):
 				boolVar = False	  #Set the boolVar to false becasue I am done
@@ -40,15 +41,32 @@ class Solution(object):
 				counter = 1 		#Needed to create a vairable to keep track of how many repeated chars I encounter
 				
 				#Now I need to enter the second while loop. This will allow me to count how many repeated chars I have
-				while(boolHelper): 
+				while(boolHelper):
+					#print("fuck me") 
 					#Now I need to check ahead
 					if(nums[itr] == nums[itr+1]):
-						#If I fall in here then I know I have more than one occurrence of the same character. 
+						#If I fall in here then I know I have more than one occurrence of the same character.
+						print(nums[itr]) 
 						counter += 1
 						itr += 1
-					else: 
+					else:
+						print("fuck me") 
 						#If I fall in here, then I just need to stop and exit the loop.
-						boolHelper = False	#Need to terminate the loop.  
+						boolHelper = False	#Need to terminate the loop.
+						break			#testing this out 
+
+				#Now I need to actually go in and change the appropriate values within my array
+				for j in range((i+1), (i <= counter)):
+					print("looping all fucked") 
+					#In here I will loop through the array and replace with I need
+					if((itr + counter) > len(nums-1)): 
+						#Need to check if I am at the last repeated char in my sequence... if so, just replace with a '_'
+						nums[j] = '_'
+					else: 
+						#If I fall in here then I need to do some swaping
+						nums[j] = nums[j+counter]	#Bring the next char up to the correct position
+						nums[j+counter] = '_' 		#Replace the position of the next char w a '_'
+
 			#This else is intended for when I don't have a current match...
 			#...i.e -> nums[i] != nums[i+=1]
 			else: 
@@ -59,7 +77,7 @@ class Solution(object):
 	def main(self):
 		#Here I will create test data and see what works
 		#First I need to create a couple test arrays		
-		testArr01 = [0, 0, 1, 1, 1, 2, 2, 2, 3, 4]    #Test array 1
+		testArr01 = [1, 2, 2, 2, 2, 3, 4, 5]    #Test array 1
 		#testArr02 = [1, 2, 2, 3, 4]          #Test array 2
 		#testArr03 = [1, 2, 3, 4, 5, 6, 7]    #Test array 3
 		
