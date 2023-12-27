@@ -4,7 +4,7 @@ Author: Nicholas G. Burkett
 Date: 05/15/2023
 Problem: Remove duplicate values from a sorted array
 Expected input:  [1, 1, 2, 3, 3, 4]
-Expected output: [1, 2, 3, 4]
+Expected output: [1, 2, 3, 4, _, _]
 Level: Easy
 """
 
@@ -31,19 +31,24 @@ class Solution(object):
 			#I will check to see if we have a duplicate pair
 			elif(nums[i] == nums[i+1]):
 				#If I fall in here I know I need to alter the array... aka replace some values
-				#Here I will create a for loop to step through and alter the array
+				#Here I will create a for loop to step through and alter the array 
 
 				#THINKING A WHILE LOOP HERE WILL FIX MY ISSUE!!!!!!!
-				itr = i+1     #Declare a second counter variable for the for-loop
-				for itr in range(itr, (lenOfArr - 1)): 
-					#Possibly need to check bounds here, but I don't think I do... we will see
-					nums[itr] = nums[itr+1]    #Perform the swap
-
+				#Here is my attempt to fix my issue with a while loop: 
+				itr = (i+1)		#Need to set my counter ahead one
+				boolHelper = True	#Need to set another counter for my 2nd while loop
+				counter = 1 		#Needed to create a vairable to keep track of how many repeated chars I encounter
 				
-
-				nums[(lenOfArr-1)] = "_" 	    #Perform the final replacement
-				i += 1      			    #Increment the main counter
-			
+				#Now I need to enter the second while loop. This will allow me to count how many repeated chars I have
+				while(boolHelper): 
+					#Now I need to check ahead
+					if(nums[itr] == nums[itr+1]):
+						#If I fall in here then I know I have more than one occurrence of the same character. 
+						counter += 1
+						itr += 1
+					else: 
+						#If I fall in here, then I just need to stop and exit the loop.
+						boolHelper = False	#Need to terminate the loop.  
 			#This else is intended for when I don't have a current match...
 			#...i.e -> nums[i] != nums[i+=1]
 			else: 
